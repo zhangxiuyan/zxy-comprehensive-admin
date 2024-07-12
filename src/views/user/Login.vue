@@ -18,7 +18,7 @@
             <a-input
               size="large"
               type="text"
-              :placeholder="$t('user.login.username.placeholder')"
+              :placeholder="$t('user.login.userName')"
               v-decorator="[
                 'userAccount',
                 {rules: [{ required: true, message: $t('user.userName.required') }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
@@ -31,7 +31,7 @@
           <a-form-item>
             <a-input-password
               size="large"
-              :placeholder="$t('user.login.password.placeholder')"
+              :placeholder="$t('user.login.password')"
               v-decorator="[
                 'userPassword',
                 {rules: [{ required: true, message: $t('user.password.required') }], validateTrigger: 'blur'}
@@ -41,6 +41,7 @@
             </a-input-password>
           </a-form-item>
         </a-tab-pane>
+
         <a-tab-pane key="tab2" :tab="$t('user.login.tab-login-mobile')">
           <a-form-item>
             <a-input size="large" type="text" :placeholder="$t('user.login.mobile.placeholder')" v-decorator="['mobile', {rules: [{ required: true, pattern: /^1[34578]\d{9}$/, message: $t('user.login.mobile.placeholder') }], validateTrigger: 'change'}]">
@@ -89,19 +90,19 @@
         >{{ $t('user.login.login') }}</a-button>
       </a-form-item>
 
-      <div class="user-login-other">
-        <span>{{ $t('user.login.sign-in-with') }}</span>
-        <a>
-          <a-icon class="item-icon" type="alipay-circle"></a-icon>
-        </a>
-        <a>
-          <a-icon class="item-icon" type="taobao-circle"></a-icon>
-        </a>
-        <a>
-          <a-icon class="item-icon" type="weibo-circle"></a-icon>
-        </a>
-        <router-link class="register" :to="{ name: 'register' }">{{ $t('user.login.signup') }}</router-link>
-      </div>
+<!--      <div class="user-login-other">-->
+<!--        <span>{{ $t('user.login.sign-in-with') }}</span>-->
+<!--        <a>-->
+<!--          <a-icon class="item-icon" type="alipay-circle"></a-icon>-->
+<!--        </a>-->
+<!--        <a>-->
+<!--          <a-icon class="item-icon" type="taobao-circle"></a-icon>-->
+<!--        </a>-->
+<!--        <a>-->
+<!--          <a-icon class="item-icon" type="weibo-circle"></a-icon>-->
+<!--        </a>-->
+<!--        <router-link class="register" :to="{ name: 'register' }">{{ $t('user.login.signup') }}</router-link>-->
+<!--      </div>-->
     </a-form>
 
     <two-step-captcha

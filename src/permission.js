@@ -19,6 +19,7 @@ router.beforeEach((to, from, next) => {
   to.meta && typeof to.meta.title !== 'undefined' && setDocumentTitle(`${i18nRender(to.meta.title)} - ${domTitle}`)
   /* has token */
   const token = storage.get(ACCESS_TOKEN)
+  console.log(22, token)
   if (token) {
     if (to.path === loginRoutePath) {
       next({ path: defaultRoutePath })
@@ -26,6 +27,7 @@ router.beforeEach((to, from, next) => {
     } else {
       // check login user.roles is null
       if (store.getters.roles.length === 0) {
+        console.log(29)
         // request login userInfo
         store
           .dispatch('GetInfo')
@@ -65,6 +67,7 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
+    console.log(68, 'token is null')
     if (allowList.includes(to.name)) {
       // 在免登录名单，直接进入
       next()
