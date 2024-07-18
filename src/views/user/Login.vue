@@ -20,7 +20,7 @@
               type="text"
               :placeholder="$t('user.login.userName')"
               v-decorator="[
-                'userAccount',
+                'account',
                 {rules: [{ required: true, message: $t('user.userName.required') }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
               ]"
             >
@@ -182,14 +182,14 @@ export default {
 
       state.loginBtn = true
 
-      const validateFieldsKey = customActiveKey === 'tab1' ? ['userAccount', 'userPassword'] : ['mobile', 'captcha']
+      const validateFieldsKey = customActiveKey === 'tab1' ? ['account', 'userPassword'] : ['mobile', 'captcha']
 
       validateFields(validateFieldsKey, { force: true }, (err, values) => {
         if (!err) {
           console.log('login form', values)
           const loginParams = { ...values }
           delete loginParams.username
-          loginParams[!state.loginType ? 'email' : 'userAccount'] = values.userAccount
+          loginParams[!state.loginType ? 'email' : 'account'] = values.account
           loginParams.userPassword = md5(values.userPassword)
           Login(loginParams)
             .then(res => this.loginSuccess(res))

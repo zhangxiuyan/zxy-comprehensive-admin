@@ -54,7 +54,11 @@ const user = {
       return new Promise((resolve, reject) => {
         // 请求后端获取用户信息 /api/user/info
         getInfo().then(response => {
-          const { result } = response
+          const result = response.data
+          console.log(58, response, response.data)
+          console.log(59, JSON.parse(result.role))
+          result.role = JSON.parse(result.role)
+          console.log('user -> 59', result.role)
           if (result.role && result.role.permissions.length > 0) {
             const role = { ...result.role }
             role.permissions = result.role.permissions.map(permission => {

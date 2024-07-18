@@ -15,6 +15,7 @@ const request = axios.create({
 // 异常拦截处理器
 const errorHandler = (error) => {
   if (error.response) {
+    console.log(18, error.response)
     const data = error.response.data
     // 从 localstorage 获取 token
     const token = storage.get(ACCESS_TOKEN)
