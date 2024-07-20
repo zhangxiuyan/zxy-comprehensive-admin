@@ -207,10 +207,9 @@ export default {
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam, this.page)
-        console.log(210, requestParameters)
         return queryMenu(requestParameters)
           .then(res => {
-            return res.data.records
+            return res.data
           }).catch(error => {
             console.log(213)
             this.$message.error(error.message)
