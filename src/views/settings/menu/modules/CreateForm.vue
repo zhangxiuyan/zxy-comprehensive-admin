@@ -13,8 +13,30 @@
         <a-form-item v-show="model && model.id > 0" label="主键ID">
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
-        <a-form-item label="描述">
-          <a-input v-decorator="['description', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+
+        <a-form-item label="名称">
+          <a-input v-decorator="['routerName', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+        </a-form-item>
+
+        <a-form-item label="组件">
+          <a-input v-decorator="['component', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+        </a-form-item>
+
+        <a-form-item label="路径">
+          <a-input v-decorator="['routerPath', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+        </a-form-item>
+        <!--meta-->
+        <a-form-item label="标题">
+          <a-input v-decorator="['title', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+        </a-form-item>
+
+        <a-form-item label="icon">
+          <a-input v-decorator="['icon', {rules: [{required: false, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+        </a-form-item>
+
+        <a-form-item label="keepAlive">
+          <a-input v-decorator="['keepAlive', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+          <a-switch size="small" :defaultChecked="multiTab" @change="onMultiTab" />
         </a-form-item>
       </a-form>
     </a-spin>
@@ -25,7 +47,7 @@
 import pick from 'lodash.pick'
 
 // 表单字段
-const fields = ['description', 'id']
+const fields = ['id', 'routerName', 'component', 'routerPath', 'title', 'icon', 'keepAlive']
 
 export default {
   props: {
