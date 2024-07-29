@@ -188,7 +188,7 @@ export default {
           } catch (e) {
             this.localPagination = false
           }
-          this.localDataSource = r.data // 返回结果中的数组数据
+          this.localDataSource = r.records // 返回结果中的数组数据
         })
         .finally(() => {
           this.localLoading = false

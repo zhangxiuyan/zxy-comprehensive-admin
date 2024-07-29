@@ -6,8 +6,7 @@ const api = {
   service: '/service',
   permission: '/permission',
   permissionNoPager: '/permission/no-pager',
-  orgTree: '/org/tree',
-  menu: '/sys-router/list'
+  orgTree: '/org/tree'
 }
 
 export default api
@@ -67,14 +66,5 @@ export function saveSub (sub) {
     url: '/sub',
     method: sub.id === 0 ? 'post' : 'put',
     data: sub
-  })
-}
-
-export function queryMenu (parameter) {
-  console.log(74, parameter)
-  return request({
-    url: api.menu,
-    method: 'get',
-    params: parameter
   })
 }

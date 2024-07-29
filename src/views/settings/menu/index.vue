@@ -122,10 +122,10 @@
 <script>
 import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
-import { queryMenu } from '@/api/manage'
 
 import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './modules/CreateForm'
+import { createMenu, queryMenu } from '@/api/settings'
 
 const columns = [
   {
@@ -133,29 +133,25 @@ const columns = [
     scopedSlots: { customRender: 'serial' }
   },
   {
-    title: '规则编号',
-    dataIndex: 'no'
+    title: '菜单名称',
+    dataIndex: 'routerName'
   },
   {
-    title: '描述',
-    dataIndex: 'description',
-    scopedSlots: { customRender: 'description' }
+    title: 'title',
+    dataIndex: 'title'
   },
   {
-    title: '服务调用次数',
-    dataIndex: 'callNo',
-    sorter: true,
-    needTotal: true,
-    customRender: (text) => text + ' 次'
+    title: 'routerPath',
+    dataIndex: 'routerPath',
+    sorter: true
   },
   {
-    title: '状态',
-    dataIndex: 'status',
-    scopedSlots: { customRender: 'status' }
+    title: 'redirect',
+    dataIndex: 'redirect'
   },
   {
-    title: '更新时间',
-    dataIndex: 'updatedAt',
+    title: 'component',
+    dataIndex: 'component',
     sorter: true
   },
   {
@@ -276,19 +272,23 @@ export default {
             })
           } else {
             // 新增
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                resolve()
-              }, 1000)
-            }).then(res => {
-              this.visible = false
-              this.confirmLoading = false
-              // 重置表单数据
-              form.resetFields()
-              // 刷新表格
-              this.$refs.table.refresh()
+            var value = form.getFieldsValue()
+            value.keepAlive = value.keepAlive ? 1 : 0
+            console.log(280, value)
+            createMenu(value).then(res => {
+              console.log(282, res)
+              if (res.code === 200) {
+                this.visible = false
+                this.confirmLoading = false
+                // 重置表单数据
+                form.resetFields()
+                // 刷新表格
+                this.$refs.table.refresh()
 
-              this.$message.info('新增成功')
+                this.$message.info('新增成功')
+              } else {
+                this.confirmLoading = false
+              }
             })
           }
         } else {
